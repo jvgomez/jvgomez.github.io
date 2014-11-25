@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="/theme/html5.js"></script>
+    <script src="https://jvgomez.github.io/theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="/theme/local.css" rel="stylesheet">
-    <link href="/theme/pygments.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
 
@@ -39,12 +39,12 @@
         <div class="nav-collapse">
         <ul class="nav">
             
-            <li><a href="/pages/about-me.html">About Me</a></li>
-            <li><a href="/pages/gallery.html">Gallery</a></li>
-            <li><a href="/pages/other-works.html">Other Works</a></li>
-            <li><a href="/pages/publications.html">Publications</a></li>
-            <li><a href="/pages/research.html">Research</a></li>
-            <li><a href="/pages/tutorials.html">Tutorials</a></li>
+            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
+            <li><a href="https://jvgomez.github.io/pages/gallery.html">Gallery</a></li>
+            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
+            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
+            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
+            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
         </ul>
         </div>
         
@@ -57,14 +57,13 @@
     <div class="row">
 
         <div class="span9">
-        
-<section id="content" class="body">    
+<section id="content" class="body">
     <h1 class="content-title">
         Introduction to path planning: made easier with Biicode
-	<h3>Contents:
+    <h3>Contents:
         <h4>
-	       <nav class="toc">
-	       <div class="toc">
+           <nav class="toc">
+           <div class="toc">
 <ul>
 <li><a href="#theoretical-background">Theoretical background</a></li>
 <li><a href="#requirements">Requirements</a></li>
@@ -77,16 +76,16 @@
 <li><a href="#contact">Contact</a></li>
 </ul>
 </div>
-	       </nav>
+           </nav>
         </h4>
-	</h3>
+    </h3>
+
     </h1>
-    
-<p>Along this tutorial, I will show you how to execute my <strong>Fast Marching Method</strong> code uploaded to <a href="https://www.biicode.com/">Biicode</a>. You will realize how easy is to use this tool.</p>
+    <p>Along this tutorial, I will show you how to execute my <strong>Fast Marching Method</strong> code uploaded to <a href="https://www.biicode.com/">Biicode</a>. You will realize how easy is to use this tool.</p>
 <h2 id="theoretical-background">Theoretical background</h2>
 <p>The path planning algorithms employed in this section are the <strong>Fast Marching Method</strong> and the <strong>Fast Marching Square</strong> method. Those methods are really similar to Dijkstra's method: From a given point, the distance of all the surrounding points is computed incrementally. Somehow, it is like if we are propagating a wave from the start point. This wave explores the whole map until the goal point is found. This process creates a distances map which says "how far" every point is from the start point. Then, if we apply gradient descent method from the goal point, we will reach the start point following the minimum-distance path.</p>
 <p>Fast Marching Square substitutes the term <em>distance</em> by <em>arrival time</em>. In this case, the wave does not propagate at constant velocity. It propagates slower as it gets close to obstacles. At the end, the distances map obtained is very similar. However, when gradient descent is run, the path obtained is safer (it does not get close to obstacles) and smoother. These are desirable properties when applied to robotics.</p>
-<p>If you interested in deeply understand the algorithms, take a look at my <a href="/pages/fast-marching-method-and-fast-marching-square.html">Research section</a>.</p>
+<p>If you interested in deeply understand the algorithms, take a look at my <a href="https://jvgomez.github.io/pages/fast-marching-method-and-fast-marching-square.html">Research section</a>.</p>
 <p>The underlying Fast Marching code relies on a rather complex <a href="{filename}/other_works/ndgridmap.md"><strong>nDGridMap class</strong></a>: A datastructure representing a n dimensional grid map.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
@@ -106,16 +105,16 @@
 <dl class="section note"><dt>Note</dt><dd>The code provided lacks most of the error checkings(loading a wrong/inexistent file, clicking in obstacles, etc) since I aimed to keep it simple and readable.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This tutorial is written to work in Ubuntu. The Fast Marching code has not been tested in other platforms, although I think it should work in other OS.</dd></dl>
 <h2 id="are-you-in-a-hurry-try-this">Are you in a hurry? Try this:</h2>
-<div class="codehilite"><pre><span class="err">$</span> <span class="n">mkdir</span> <span class="n">fmtutorial</span>
-<span class="err">$</span> <span class="n">cd</span> <span class="n">fmtutorial</span>
-<span class="err">$</span> <span class="n">bii</span> <span class="n">init</span>
-<span class="err">$</span> <span class="n">bii</span> <span class="n">open</span> <span class="n">jvgomez</span><span class="o">/</span><span class="n">fmexamples</span>
-<span class="err">$</span> <span class="n">bii</span> <span class="n">cpp</span><span class="o">:</span><span class="n">build</span>
-<span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">jvgomez_fmexamples_main</span>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir fmtutorial
+<span class="nv">$ </span><span class="nb">cd </span>fmtutorial
+<span class="nv">$ </span>bii init
+<span class="nv">$ </span>bii open jvgomez/fmexamples
+<span class="nv">$ </span>bii cpp:build
+<span class="nv">$ </span>./bin/jvgomez_fmexamples_main
 </pre></div>
 <p>Click in any two white points of the map. In my case I clicked in the red circles (first start at top-left, then goal at bottom-right):</p>
 <div class="figure align-left" style="width: 100%; height: auto;">
-<img alt="Path planning example" src="/images/fm_biicode/map.png" style="width: 100%; height: auto;"/>
+<img alt="Path planning example" src="https://jvgomez.github.io/images/fm_biicode/map.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Input map used in the example with the start and goal regions marked as red circles.</p>
 <!--
@@ -132,15 +131,15 @@
 </li>
 </ul>
 <div class="figure align-left" style="width: 100%; height: auto;">
-<img alt="Path planning example" src="/images/fm_biicode/distances.png" style="width: 49%; height: auto;"/>
-<img alt="Path planning example" src="/images/fm_biicode/path.png" style="width: 49%; height: auto;"/>
+<img alt="Path planning example" src="https://jvgomez.github.io/images/fm_biicode/distances.png" style="width: 49%; height: auto;"/>
+<img alt="Path planning example" src="https://jvgomez.github.io/images/fm_biicode/path.png" style="width: 49%; height: auto;"/>
 <p></p>
 <p class="caption">Left - FMM distances map. Right - Path obtained running gradient descent.</p>
 <!--
 <p class="legend"> This is a legend</p>
 -->
 </div>
-<p>And my console out was the following:</p>
+<p>And my console output was the following:</p>
 <pre><span style="color:#000000">jabuntu14@ubuntu:~/bii_ws/fmtutorial$ ./bin/jvgomez_fmexamples_main</span><span style="color:#0000ff">
 <b>[INFO] Click in the initial and goal points.
 [INFO] Testing Fast Marching Method.
@@ -149,7 +148,7 @@
 <p>Congratulations! You just created, configured, compiled and run a path planning algorithm. With any other library this could have taken hours even if you are experienced.</p>
 <h3 id="lets-take-a-look-at-what-happened">Let's take a look at what happened</h3>
 <div class="figure align-right" style="width: 33%; height: auto;">
-<img alt="Path planning example" src="/images/fm_biicode/tree.png" style="width: 100%; height: auto;"/>
+<img alt="Path planning example" src="https://jvgomez.github.io/images/fm_biicode/tree.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Biicode folder directory tree.</p>
 <!--
@@ -170,14 +169,13 @@
 <p>Automatically get all the required dependencies, configure the CMake project and compile it. We actually have very few dependencies:</p>
 </li>
 </ul>
-<pre>
-#include "jvgomez/fmm/fmm/fastmarching.hpp" &lt;-- Fast Marching algorithm
-#include "jvgomez/fmm/io/maploader.hpp"     &lt;-- To load a map from an image
-#include "jvgomez/fmm/io/gridplotter.hpp"   &lt;-- To plot a map
-#include "jvgomez/fmm/io/gridpoints.hpp"    &lt;-- To enable start and goal selection by clicking
-#include "jvgomez/fmm/gradientdescent/gradientdescent.hpp" &lt;-- Gradient descent algorithm
-</pre>
-
+<!-- -->
+<div class="highlight"><pre><span class="cp">#include "jvgomez/fmm/fmm/fastmarching.hpp" </span><span class="c1">// Fast Marching</span>
+<span class="cp">#include "jvgomez/fmm/io/maploader.hpp"     </span><span class="c1">// Load map from image</span>
+<span class="cp">#include "jvgomez/fmm/io/gridplotter.hpp"   </span><span class="c1">// Plot map</span>
+<span class="cp">#include "jvgomez/fmm/io/gridpoints.hpp"    </span><span class="c1">// Enable point selection by clicking</span>
+<span class="cp">#include "jvgomez/fmm/gradientdescent/gradientdescent.hpp" </span><span class="c1">// Gradient descent</span>
+</pre></div>
 <p>However, these files recursively have some other dependencies: CImg and other jvgomez blocks. Biicode manages all that <strong>automatically</strong> so all dependencies are obtained and the CMake project is successfully created.</p>
 <p>A very important point is that you did not specify the compilation flags (such as C++11) or the dependencies to X11 required by CImg. Those were already included in the <code>jvgomez/fmexamples</code> block, but they are automatically downloaded when you opened the block. Isn't that awesome?</p>
 <h2 id="that-is-cool-but-i-want-more">That is cool, but I want more!</h2>
@@ -188,13 +186,13 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
 <li>Activate FastMarching2 algorithm: uncomment lines 23, 59, 63, 64.</li>
 </ul>
 <p>And then, with a terminal open in the fmtutorial folder (as before), type the following commands:</p>
-<div class="codehilite"><pre><span class="err">$</span> <span class="n">bii</span> <span class="n">find</span>
-<span class="err">$</span> <span class="n">bii</span> <span class="n">cpp</span><span class="o">:</span><span class="n">build</span>
-<span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">jvgomez_fmexamples_main</span>
+<div class="highlight"><pre><span class="nv">$ </span>bii find
+<span class="nv">$ </span>bii cpp:build
+<span class="nv">$ </span>./bin/jvgomez_fmexamples_main
 </pre></div>
 <p>Et voilá! You have now the Fast Marching Square algorithm running and Biicode managed the dependenies for you (since a new block is required). The new path should look something like:</p>
 <div class="figure align-right" style="width: 100%; height: auto;">
-<img alt="Path planning example" src="/images/fm_biicode/path2.png" style="width: 100%; height: auto;"/>
+<img alt="Path planning example" src="https://jvgomez.github.io/images/fm_biicode/path2.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching Square resulting path. Dependencies were automatically managed by Biicode</p>
 <!--
@@ -208,62 +206,62 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
 <ol>
 <li>
 <p>First, we declare the constant ndims and some other additional variables.</p>
-<div class="codehilite"><pre><span class="n">constexpr</span> <span class="kt">int</span> <span class="n">ndims</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Setting two dimensions.</span>
+<div class="highlight"><pre><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">ndims</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Setting two dimensions.</span>
 <span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">&gt;</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
 <span class="kt">double</span> <span class="n">time_elapsed</span><span class="p">;</span><span class="err">`</span>
 </pre></div>
 </li>
 <li>
 <p>We set the path the the file to open (hardcoded in this case). We also create a <code>nDGridMap</code> instance. Note that two policies (template parameters) are required: which kind of cells is the gridmap going to hold and how many dimensions. However, we do not know yet the size of each dimension. That depends on the map to be loaded, so we use the <code>MapLoader</code> static class to parse the map (binary image file) into a 2D <code>nDGridMap</code>. <code>fm2_sources</code> is an auxiliar variable useful only for Fast Marching Square. It keeps those indices in the map which are obstacles.</p>
-<div class="codehilite"><pre><span class="c1">// Loading map and saving it into a grid.</span>
-<span class="k">string</span> <span class="n">filename</span><span class="p">(</span><span class="s">"blocks/jvgomez/fmexamples/data/map.png"</span><span class="p">);</span>
+<div class="highlight"><pre><span class="c1">// Loading map and saving it into a grid.</span>
+<span class="n">string</span> <span class="nf">filename</span><span class="p">(</span><span class="s">"blocks/jvgomez/fmexamples/data/map.png"</span><span class="p">);</span>
 <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="n">grid</span><span class="p">;</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="k">int</span><span class="o">&gt;</span> <span class="n">fm2_sources</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fm2_sources</span><span class="p">;</span>
 <span class="n">MapLoader</span><span class="o">::</span><span class="n">loadMapFromImg</span><span class="p">(</span><span class="n">filename</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">grid</span><span class="p">,</span> <span class="n">fm2_sources</span><span class="p">);</span>
 </pre></div>
 </li>
 <li>
 <p>Next, we want to introduce by clicking the start and goal points and we use the cool <code>console</code> static class to give nice console output. Since we know the dimensions of the map (2) we can use <code>std::arrays</code> to store the coordiantes of the initial and goal points. <code>coords_init</code> will be an array [x_init, y_init] and <code>coords_goal</code> [x_goal, y_goal]. Finally, <code>GridPoints</code> class is used: it plots the map and ask for the points to the user.</p>
-<div class="codehilite"><pre><span class="c1">// Selecting initial and goal point.</span>
+<div class="highlight"><pre><span class="c1">// Selecting initial and goal point.</span>
 <span class="n">console</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">"Click in the initial and goal points."</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="k">int</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="n">coords_init</span><span class="p">,</span> <span class="n">coords_goal</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="n">coords_init</span><span class="p">,</span> <span class="n">coords_goal</span><span class="p">;</span>
 <span class="n">GridPoints</span><span class="o">::</span><span class="n">selectMapPoints</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">coords_init</span><span class="p">,</span> <span class="n">coords_goal</span><span class="p">);</span>
 </pre></div>
 </li>
 <li>
 <p>Before proceeding with the <code>FastMarching</code> algorithm, we first need to convert from coordinates to indices. The n-dimensional grid is actually a 1D vector so its cells have to be handled through indicies. Fortunatelly, the <code>nDGridMap</code> class contains the <code>coord2idx()</code> method which takes care of that for us:</p>
-<div class="codehilite"><pre><span class="nx">vector</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;</span> <span class="nx">init_points</span><span class="p">;</span>
-<span class="nx">int</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">goal</span><span class="p">;</span>
-<span class="nx">grid.coord2idx</span><span class="p">(</span><span class="nx">coords_init</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
-<span class="nx">init_points.push_back</span><span class="p">(</span><span class="nx">idx</span><span class="p">);</span>
-<span class="nx">grid.coord2idx</span><span class="p">(</span><span class="nx">coords_goal</span><span class="p">,</span> <span class="nx">goal</span><span class="p">);</span>
+<div class="highlight"><pre><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">init_points</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="n">goal</span><span class="p">;</span>
+<span class="n">grid</span><span class="p">.</span><span class="n">coord2idx</span><span class="p">(</span><span class="n">coords_init</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+<span class="n">init_points</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+<span class="n">grid</span><span class="p">.</span><span class="n">coord2idx</span><span class="p">(</span><span class="n">coords_goal</span><span class="p">,</span> <span class="n">goal</span><span class="p">);</span>
 </pre></div>
 </li>
 <li>
 <p>Now we can set the <code>FastMarching</code> instance! We create a <code>FastMarching</code> object with the kind of grid as policy. We then set the specific grid object, the initial and goal points (indices) and then we are ready to call <code>computeFM()</code>!. Some additional code is included to measure the elapsed time in the computation:</p>
-<div class="codehilite"><pre><span class="nx">FastMarching</span><span class="o">&lt;</span> <span class="nx">nDGridMap</span><span class="o">&lt;</span><span class="nx">FMCell</span><span class="p">,</span> <span class="nx">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">fmm</span><span class="p">;</span>
-<span class="nx">fmm.setEnvironment</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">grid</span><span class="p">);</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="nx">system_clock</span><span class="p">::</span><span class="nl">now</span><span class="p">();</span>
-<span class="nx">fmm.setInitialAndGoalPoints</span><span class="p">(</span><span class="nx">init_points</span><span class="p">,</span> <span class="nx">goal</span><span class="p">);</span>
-<span class="nx">fmm.computeFM</span><span class="p">();</span>
-    <span class="n">end</span> <span class="o">=</span> <span class="nx">system_clock</span><span class="p">::</span><span class="nl">now</span><span class="p">();</span>
-    <span class="n">time_elapsed</span> <span class="o">=</span> <span class="nx">duration_cast</span><span class="o">&lt;</span><span class="nx">milliseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="nb">end</span><span class="na">-start</span><span class="p">)</span><span class="bp">.</span><span class="nb">count</span><span class="p">();</span>
-    <span class="nx">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">Elapsed FMM time: "</span> <span class="o">&lt;&lt;</span> <span class="nx">time_elapsed</span> <span class="o">&lt;&lt;</span> <span class="s2">" ms"</span> <span class="o">&lt;&lt;</span> <span class="nx">endl</span><span class="p">;</span>
+<div class="highlight"><pre><span class="n">FastMarching</span><span class="o">&lt;</span> <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">fmm</span><span class="p">;</span>
+<span class="n">fmm</span><span class="p">.</span><span class="n">setEnvironment</span><span class="p">(</span><span class="o">&amp;</span><span class="n">grid</span><span class="p">);</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="n">fmm</span><span class="p">.</span><span class="n">setInitialAndGoalPoints</span><span class="p">(</span><span class="n">init_points</span><span class="p">,</span> <span class="n">goal</span><span class="p">);</span>
+<span class="n">fmm</span><span class="p">.</span><span class="n">computeFM</span><span class="p">();</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="n">time_elapsed</span> <span class="o">=</span> <span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">milliseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">).</span><span class="n">count</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t</span><span class="s">Elapsed FMM time: "</span> <span class="o">&lt;&lt;</span> <span class="n">time_elapsed</span> <span class="o">&lt;&lt;</span> <span class="s">" ms"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </pre></div>
 </li>
 <li>
 <p>We also want to get the path, so the <code>GradientDescent</code> class is called. <code>Path</code> typename is actually a vector of 2D arrays, something like [x1 y1; x2 y2; x3 y3...] containing the path points. <code>path_velocity</code> stores the velocities profile for the given path (something out of focus for this tutorial). Again the type of <code>nDGridMap</code> is given as template parameter so <code>GradientDescent</code> knows how to do its work. Finally, the <code>apply()</code> method is called from the goal point:</p>
-<div class="codehilite"><pre><span class="nx">typedef</span> <span class="nb">typename</span> <span class="nx">std</span><span class="p">::</span><span class="nl">vector</span><span class="o">&lt;</span> <span class="nx">std</span><span class="p">::</span><span class="nl">array</span><span class="o">&lt;</span><span class="nx">double</span><span class="p">,</span> <span class="nx">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nb">Path</span><span class="p">;</span>
-<span class="nb">Path</span> <span class="nb">path</span><span class="p">;</span>
-<span class="nx">std</span><span class="p">::</span><span class="nl">vector</span> <span class="o">&lt;</span><span class="nx">double</span><span class="o">&gt;</span> <span class="nx">path_velocity</span><span class="p">;</span> <span class="c1">// Velocities profile</span>
+<div class="highlight"><pre><span class="k">typedef</span> <span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">Path</span><span class="p">;</span>
+<span class="n">Path</span> <span class="n">path</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span> <span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">path_velocity</span><span class="p">;</span> <span class="c1">// Velocities profile</span>
 
-<span class="nx">GradientDescent</span><span class="o">&lt;</span> <span class="nx">nDGridMap</span><span class="o">&lt;</span><span class="nx">FMCell</span><span class="p">,</span> <span class="nx">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">grad</span><span class="p">;</span>
-<span class="nx">grad.apply</span><span class="p">(</span><span class="nx">grid</span><span class="p">,</span><span class="nx">goal</span><span class="p">,</span><span class="nb">path</span><span class="p">,</span><span class="nx">path_velocity</span><span class="p">);</span>
+<span class="n">GradientDescent</span><span class="o">&lt;</span> <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">grad</span><span class="p">;</span>
+<span class="n">grad</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">goal</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">path_velocity</span><span class="p">);</span>
 </pre></div>
 </li>
 <li>
 <p>Finally, let us make it beautiful and plot some results using the <code>GridPlotter</code> class:</p>
-<div class="codehilite"><pre><span class="n">console</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">"Plotting the results: Fast Marching distances map and path."</span><span class="p">);</span>
+<div class="highlight"><pre><span class="n">console</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">"Plotting the results: Fast Marching distances map and path."</span><span class="p">);</span>
 <span class="n">GridPlotter</span><span class="o">::</span><span class="n">plotArrivalTimes</span><span class="p">(</span><span class="n">grid</span><span class="p">);</span>
 <span class="n">GridPlotter</span><span class="o">::</span><span class="n">plotMapPath</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">path</span><span class="p">);</span>
 </pre></div>
@@ -271,13 +269,13 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
 </ol>
 <dl class="section note"><dt>Note</dt><dd>If you are thinking this is a complex design since template parameters are also templated... believe me, it is quite easy.</dd></dl>
 <p>Take a look at <a href="https://www.biicode.com/jvgomez/jvgomez/fm2examples/master/3/test_fm2.cpp">these other examples</a>. In this case, the gridmap type has been renamed so a specific type of gridmap looks like an independent class. Instead of using <code>nDGridMap&lt;FMCell, 2&gt;</code>, we can just say <code>FMGrid2D</code> by the corresponding typedef:</p>
-<div class="codehilite"><pre> <span class="k">typedef</span> <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims2</span><span class="o">&gt;</span> <span class="n">FMGrid2D</span><span class="p">;</span>
+<div class="highlight"><pre><span class="k">typedef</span> <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims2</span><span class="o">&gt;</span> <span class="n">FMGrid2D</span><span class="p">;</span>
 </pre></div>
 <p>So the calls can be simplified:</p>
-<div class="codehilite"><pre><span class="n">FastMarching</span><span class="o">&lt;</span> <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">fmm</span><span class="p">;</span>    <span class="o">---&gt;</span>     <span class="n">FastMarching</span><span class="o">&lt;</span> <span class="n">FMGrid2D</span> <span class="o">&gt;</span> <span class="n">fmm</span><span class="p">;</span>
+<div class="highlight"><pre><span class="n">FastMarching</span><span class="o">&lt;</span> <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">fmm</span><span class="p">;</span> <span class="o">---&gt;</span>  <span class="n">FastMarching</span><span class="o">&lt;</span> <span class="n">FMGrid2D</span> <span class="o">&gt;</span> <span class="n">fmm</span><span class="p">;</span>
 </pre></div>
 <h2 id="contact">Contact</h2>
-<p>Any problem with this tutorial? Questions? <a href="/pages/about-me.html">Contact me!</a>.</p>
+<p>Any problem with this tutorial? Questions? <a href="https://jvgomez.github.io/pages/about-me.html">Contact me!</a>.</p>
 </section>
         </div>
         
@@ -289,8 +287,8 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
                 Site
                 </li>
             
-                <li><a href="/">Archives</a>
-                <li><a href="/tags.html">Tags</a>
+                <li><a href="https://jvgomez.github.io/">Archives</a>
+                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
 
 
 

@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="/theme/html5.js"></script>
+    <script src="https://jvgomez.github.io/theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="/theme/local.css" rel="stylesheet">
-    <link href="/theme/pygments.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
 
@@ -39,12 +39,12 @@
         <div class="nav-collapse">
         <ul class="nav">
             
-            <li><a href="/pages/about-me.html">About Me</a></li>
-            <li><a href="/pages/gallery.html">Gallery</a></li>
-            <li><a href="/pages/other-works.html">Other Works</a></li>
-            <li><a href="/pages/publications.html">Publications</a></li>
-            <li><a href="/pages/research.html">Research</a></li>
-            <li><a href="/pages/tutorials.html">Tutorials</a></li>
+            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
+            <li><a href="https://jvgomez.github.io/pages/gallery.html">Gallery</a></li>
+            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
+            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
+            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
+            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
         </ul>
         </div>
         
@@ -57,14 +57,13 @@
     <div class="row">
 
         <div class="span9">
-        
-<section id="content" class="body">    
+<section id="content" class="body">
     <h1 class="content-title">
         Fast Marching Method and Fast Marching Square
-	<h3>Contents:
+    <h3>Contents:
         <h4>
-	       <nav class="toc">
-	       <div class="toc">
+           <nav class="toc">
+           <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#fast-marching-methods-in-path-planning">Fast Marching Methods in Path planning</a></li>
@@ -80,19 +79,19 @@
 <li><a href="#references">References</a></li>
 </ul>
 </div>
-	       </nav>
+           </nav>
         </h4>
-	</h3>
+    </h3>
+
     </h1>
-    
-<h2 id="introduction">Introduction</h2>
+    <h2 id="introduction">Introduction</h2>
 <p>Here, I summarize my planning research into path planning based on <strong>Fast Marching Method (FMM)</strong> and <strong>Fast Marching Square (FM2)</strong> methods.</p>
 <dl class="section note"><dt>Note</dt><dd> Most, if not all, of my algorithms work in any number of dimensions. However, with FMM and FM2 I focus on 2D and 3D. They are really slow in more than 4 dimension.</dd></dl>
 <h2 id="fast-marching-methods-in-path-planning">Fast Marching Methods in Path planning</h2>
 <p>Originally, FMM was a very efficient way of computing distances fields. A distance field is an scalar field in which any point of the space contains the <em>distance</em> to a given point, taking into account the environment, not just using straight lines. In other words, obstacles have to be avoided. This is done by simulating a wave propagation through the environment. And this wave cannot go through obstacles.</p>
 <p>Actually, FMM does not compute distances but <em>arrival times</em>. That is, the time the wave takes to arrive to a given point. For constant velocity it is equivalent to Euclidean distance. However, it becomes really interesting in cases in which the velocity is no constant.</p>
 <div class="figure align-right" style="width: 100%; height: auto;">
-<img alt="Fast Marching Method" src="/images/fmm.png" style="width: 100%; height: auto;"/>
+<img alt="Fast Marching Method" src="https://jvgomez.github.io/images/fmm.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching Method. With constant velocity, FMM returns the optimal path in terms of distance.</p>
 <!--
@@ -102,7 +101,7 @@
 <h2 id="fast-marching-square">Fast Marching Square</h2>
 <p>Now, let us set a velocities map. We will set a relative velocity giving every point in the map a velocity directly proportional to the distance of its closest obstacle. And we will use FMM in order to compute this velocities map (which is, in fact, a distance transform). We will be applying FMM later over this velocities map. Hence the name.</p>
 <div class="figure align-right" style="width: 550px; height: auto;">
-<img alt="Fast Marching Method" src="/images/fm2.png" style="width: 550px; height: auto;"/>
+<img alt="Fast Marching Method" src="https://jvgomez.github.io/images/fm2.png" style="width: 550px; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching Square. Provides safe, smooths trajectories. In this case, the method provides the optimum time trajectory assuming that the robot is moving at the speed determined by the velocities map.</p>
 <!--
@@ -111,19 +110,19 @@
 </div>
 <p><iframe allowfullscreen="" frameborder="0" height="260" mozallowfullscreen="" src="http://www.youtube.com/embed/977uIGoOtDA" webkitallowfullscreen="" width="260">
 </iframe></p>
-<p><br>
-<br>
-<br/></br></br></p>
+<p><br/>
+<br/>
+<br/></p>
 <h3 id="application-to-the-iter-project">Application to the ITER project</h3>
 <div class="figure align-right" style="width: 300px; height: auto;">
-<img alt="Fast Marching Method" src="/images/fm2iter.png" style="width: 300px; height: auto;"/>
+<img alt="Fast Marching Method" src="https://jvgomez.github.io/images/fm2iter.png" style="width: 300px; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching Square + Optimization at ITER scenario.</p>
 <!--
 <p class="legend"> This is a legend</p>
 -->
 </div>
-<p>In collaboration with my friends from the <a href="http://www.ipfn.ist.utl.pt/">Instituto de Plasmas e Fusão Nuclear</a>, we have appied FM2 to the <strong>I</strong>nternational <strong>T</strong>hermonuclear <strong>E</strong>xperimental <strong>R</strong>eactor and carried out a very exhaustive analysis. The results were very good: the FM2 properties fit very well in this problem. An optimization procedure is applied after FM2 in order to make the path even smoother and check that the ITER requirements are satisfied.</p>
+<p>In collaboration with my friends from the <a href="http://www.ipfn.ist.utl.pt/">Instituto de Plasmas e Fusão Nuclear</a>, we have appied FM2 to the __I__nternational __T__hermonuclear __E__xperimental __R__eactor and carried out a very exhaustive analysis. The results were very good: the FM2 properties fit very well in this problem. An optimization procedure is applied after FM2 in order to make the path even smoother and check that the ITER requirements are satisfied.</p>
 <p><iframe allowfullscreen="" frameborder="0" height="260" mozallowfullscreen="" src="http://www.youtube.com/embed/ShhX0hc0WR0" webkitallowfullscreen="" width="260">
 </iframe> <iframe allowfullscreen="" frameborder="0" height="260" mozallowfullscreen="" src="http://www.youtube.com/embed/YiIq7pzgW9k" webkitallowfullscreen="" width="260">
 </iframe></p>
@@ -133,7 +132,7 @@
 - Reproduce the experience, so that new paths will imitate previous paths.
 - Boost the computation time, since now the FMM wave is directed through an specific path.</p>
 <div class="figure align-right" style="width: 580px; height: auto;">
-<img alt="Fast Marching Method" src="/images/fml.png" style="width: 580px; height: auto;"/>
+<img alt="Fast Marching Method" src="https://jvgomez.github.io/images/fml.png" style="width: 580px; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching Learning applied to handwriting motions.</p>
 <p class="legend"> If a regular planner is applied, the output would be (kind of) straight lines between points. In this case, FML (blue paths) follows the previous experience (red points).</p>
@@ -143,7 +142,7 @@
 <h3 id="multirobot-formation-motion-planning-with-fast-marching-square">Multirobot formation motion planning with Fast Marching Square</h3>
 <p>It turns out that FM2 is a very good base algorithm for planning robot formations. In this case, a path is computed for the leader. Since it goes far from obstacles, it is easier for the rest of the robots (followers) to follow the leader with a prescribed formation geometry. This geometry, however, is deformed taking into account the velocities map in order to accomodate the formation to the environment. This way, we obtain smooth, safe paths for all the robots in the formation while keeping the geometry as much as possible.</p>
 <div class="figure align-right" style="width: 420px; height: auto;">
-<img alt="Fast Marching Method" src="/images/formations.png" style="width: 420px; height: auto;"/>
+<img alt="Fast Marching Method" src="https://jvgomez.github.io/images/formations.png" style="width: 420px; height: auto;"/>
 <p></p>
 <p class="caption">FM2-based robot formation planning.</p>
 </div>
@@ -155,37 +154,37 @@
 </iframe> <iframe allowfullscreen="" frameborder="0" height="420" mozallowfullscreen="" src="http://www.youtube.com/embed/M0kuOB8z2mE" webkitallowfullscreen="" width="420">
 </iframe></p>
 <h3 id="fm2-and-fmdirectional">FM2* and FMDirectional</h3>
-<p><div class="figure align-right" style="width: 300px; height: auto;">
-<img alt="Fast Marching Method" src="/images/fmdir.png" style="width: 300px; height: auto;"/>
+<p></p><div class="figure align-right" style="width: 300px; height: auto;">
+<img alt="Fast Marching Method" src="https://jvgomez.github.io/images/fmdir.png" style="width: 300px; height: auto;"/>
 <p></p>
 <p class="caption">FM2 (left) - FMDirectional (right)</p>
-</div></p>
+</div>
 <p>So far, only high-level planning algorithms have been introduced. Here, a cost-to-go heuristic is included so that the FMM is directed towards the goal, decreasing the path computation time, while keeping the same path. Also, we have solved a basic problem of the FM2. Sometimes, it gets far away from obstacles when it is not required. Therefore, FMDirectional improves the path lengths and execution time of the trajectories.
 <iframe allowfullscreen="" frameborder="0" height="425" mozallowfullscreen="" src="http://www.youtube.com/embed/wzvEGRznflk" webkitallowfullscreen="" width="425">
 </iframe></p>
 <h2 id="source-code">Source code</h2>
-<p><dl class="section note"><dt>Note</dt><dd> Not all my research code is available. Just because I don't think it is worthy. Contact me if you are interested anyway.</dd></dl></p>
+<p></p><dl class="section note"><dt>Note</dt><dd> Not all my research code is available. Just because I don't think it is worthy. Contact me if you are interested anyway.</dd></dl>
 <div class="figure align-left" style="width: 300px; height: auto;">
-<img alt="Fast Marching Method" src="/images/fmmtimes.png" style="width: 300px; height: auto;"/>
+<img alt="Fast Marching Method" src="https://jvgomez.github.io/images/fmmtimes.png" style="width: 300px; height: auto;"/>
 <p></p>
 <p class="caption">FMM versions comparison.</p>
 </div>
 <ul>
 <li>
-<p><a href="https://github.com/jvgomez/fm2_matlab">Matlab FM2 source</a>: High level planning algorithms. This code requires the Gabriel Peyré's Fast Marching Toolbox. If have created a small tutorial about how to install this toolbox: <a href="/pages/fast-marching-toolbox-installation-tutorial.html">FM Toolbox</a></p>
+<p><a href="https://github.com/jvgomez/fm2_matlab">Matlab FM2 source</a>: High level planning algorithms. This code requires the Gabriel Peyré's Fast Marching Toolbox. If have created a small tutorial about how to install this toolbox: <a href="https://jvgomez.github.io/pages/fast-marching-toolbox-installation-tutorial.html">FM Toolbox</a></p>
 </li>
 <li>
-<p><a href="https://github.com/jvgomez/fastmarching">C++ FMM and FM2</a>: n-dimensional Fast Marching Method code with different FMM and FM2 versions implemented and basic tools to test them. You can find a very easy <a href="/pages/introduction-to-path-planning-made-easier-with-biicode.html">tutorial</a>.</p>
+<p><a href="https://github.com/jvgomez/fastmarching">C++ FMM and FM2</a>: n-dimensional Fast Marching Method code with different FMM and FM2 versions implemented and basic tools to test them. You can find a very easy <a href="https://jvgomez.github.io/pages/introduction-to-path-planning-made-easier-with-biicode.html">tutorial</a>.</p>
 </li>
 </ul>
-<p>Please, <a href="/pages/about-me.html">contact me</a> if you have any problem/question about this code.</p>
+<p>Please, <a href="https://jvgomez.github.io/pages/about-me.html">contact me</a> if you have any problem/question about this code.</p>
 <h2 id="references">References</h2>
 <p>In order to get introduced to the <strong>FM2</strong> method, I recommend the following publications:</p>
 <ul>
-<li>A. Valero, J.V. Gómez, S. Garrido and L. Moreno, <strong>The Path to Efficiency: Fast Marching Method for Safer, More Efficient Mobile Robot Trajectories</strong>, IEEE Robotics and Automation Magazine, Vol. 20, No. 4, 2013. Impact factor (2013): 2.319, Q1.<br/><a href="/files/pubs/fm2star.pdf">PDF</a></li>
-<li>J.V. Gómez Master's Thesis, <strong>Advanced Applications of the Fast Marching Square Planning Method</strong>, Carlos III University of Madrid, 23rd November, 2012.<br/><a href="/files/pubs/JVGG_Masters_Thesis.pdf">PDF</a></li>
+<li>A. Valero, J.V. Gómez, S. Garrido and L. Moreno, <strong>The Path to Efficiency: Fast Marching Method for Safer, More Efficient Mobile Robot Trajectories</strong>, IEEE Robotics and Automation Magazine, Vol. 20, No. 4, 2013. Impact factor (2013): 2.319, Q1.<br/><a href="https://jvgomez.github.io/files/pubs/fm2star.pdf">PDF</a></li>
+<li>J.V. Gómez Master's Thesis, <strong>Advanced Applications of the Fast Marching Square Planning Method</strong>, Carlos III University of Madrid, 23rd November, 2012.<br/><a href="https://jvgomez.github.io/files/pubs/JVGG_Masters_Thesis.pdf">PDF</a></li>
 </ul>
-<p>In my <a href="/pages/publications.html">publications</a> you can find the full list.</p>
+<p>In my <a href="https://jvgomez.github.io/pages/publications.html">publications</a> you can find the full list.</p>
 </section>
         </div>
         
@@ -197,8 +196,8 @@
                 Site
                 </li>
             
-                <li><a href="/">Archives</a>
-                <li><a href="/tags.html">Tags</a>
+                <li><a href="https://jvgomez.github.io/">Archives</a>
+                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
 
 
 
