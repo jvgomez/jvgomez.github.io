@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JV - Science and stuff.</title>
+    <meta name="description" content="">
+    <meta name="author" content="Javier V. Gómez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="/theme/local.css" rel="stylesheet">
+    <link href="/theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="/index.html">JV - Science and stuff.</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="/pages/about-me.html">About Me</a></li>
+            <li><a href="/pages/gallery.html">Gallery</a></li>
+            <li><a href="/pages/other-works.html">Other Works</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <li><a href="/pages/research.html">Research</a></li>
+            <li><a href="/pages/tutorials.html">Tutorials</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+<section id="content" class="body">    
+    <h1 class="content-title">
+        Fast Marching Toolbox Installation tutorial
+	<h3>Contents:
+        <h4>
+	       <nav class="toc">
+	       <div class="toc">
+<ul>
+<li><a href="#get-the-toolbox">Get the toolbox</a><ul>
+<li><a href="#more-info">More info</a></li>
+<li><a href="#system-prerequisites">System Prerequisites</a></li>
+</ul>
+</li>
+<li><a href="#compiling-the-toolbox">Compiling the toolbox</a></li>
+<li><a href="#setting-the-matlabs-path">Setting the Matlab's Path</a></li>
+<li><a href="#testing">Testing</a></li>
+</ul>
+</div>
+	       </nav>
+        </h4>
+	</h3>
+    </h1>
+    
+<h2 id="get-the-toolbox">Get the toolbox</h2>
+<p>Here I provide the basic information to use the codes I provide based on this toolbox.
+- http://www.mathworks.com/matlabcentral/fileexchange/6110-toolbox-fast-marching</p>
+<dl class="section note"><dt>Note</dt><dd> <b>DO NOT</b> save the Fast Marching toolbox into the Matlab's toolboxes path. It looks that it does not compile properly in this folder.</dd></dl>
+<h4 id="more-info">More info</h4>
+<ul>
+<li><a href="http://www.ceremade.dauphine.fr/~peyre/">Gabriel Peyré's website</a></li>
+<li><a href="http://www.ceremade.dauphine.fr/~peyre/numerical-tour/tours/ numerical tours">numerical tours</a>.</li>
+</ul>
+<h3 id="system-prerequisites">System Prerequisites</h3>
+<ul>
+<li>Set your <a href="http://www.mathworks.es/support/compilers/R2013b/index.html?sec=win64">Matlab supported compiler</a>.</li>
+<li>For Linux users, install <code>build-essential</code> package:</li>
+</ul>
+<p><code>sudo apt-get install build-essential</code></p>
+<h2 id="compiling-the-toolbox">Compiling the toolbox</h2>
+<ul>
+<li>Unzip it in the folder you want and set the Matlab workspace into that folder.</li>
+<li>
+<p>Before compiling the mex functions, you will probably need to set up your compiler:</p>
+<p><code>mex -setup</code></p>
+</li>
+</ul>
+<p>And follow the instructions. Working with Ubuntu, the options were:</p>
+<div class="codehilite"><pre><span class="n">The</span> <span class="n">options</span> <span class="n">files</span> <span class="n">available</span> <span class="k">for</span> <span class="n">mex</span> <span class="n">are</span><span class="o">:</span>
+<span class="mi">1</span><span class="o">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">MATLAB</span><span class="o">/</span><span class="n">R2012b</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mexopts</span><span class="p">.</span><span class="n">sh</span> <span class="o">:</span>
+    <span class="n">Template</span> <span class="n">Options</span> <span class="n">file</span> <span class="k">for</span> <span class="n">building</span> <span class="n">gcc</span> <span class="n">MEX</span><span class="o">-</span><span class="n">files</span>
+<span class="mi">0</span><span class="o">:</span> <span class="n">Exit</span> <span class="n">with</span> <span class="n">no</span> <span class="n">changes</span>
+</pre></div>
+<p>In my case it wasn't necessary to configure anything. In Windows, this could be problematic... Google will help  you :)</p>
+<ul>
+<li>
+<p>The next step is to run the compile_mex.m script. For that, just type the command:</p>
+<p><code>compile_mex</code></p>
+</li>
+</ul>
+<p>But you will get the following errors:</p>
+<pre><span style="color:#ff0000">Error using mex (line 206)
+Unable to complete successfully.
+Error in compile_mex (line 7)
+mex mex/anisotropic-fm//perform_front_propagation_anisotropic.cpp
+</span></pre>
+<p>To solve this error, open the compile_mex.m file and comment lines 7 and 8:</p>
+<pre><span style="color:#008000">% mex mex/anisotropic-fm//perform_front_propagation_anisotropic.cpp
+% mex mex/anisotropic-fm-feth/fm2dAniso.cpp
+</span></pre>
+<p>And you will find that everything compiles OK now (although you will get many warnings, probably).</p>
+<h2 id="setting-the-matlabs-path">Setting the Matlab's Path</h2>
+<p>The next step is to configure the path of Matlab. For that, you will need to include to your path the following folders:</p>
+<div class="codehilite"><pre><span class="nt">&lt;path</span><span class="na">_to_toolbox</span><span class="nt">&gt;</span>/toolbox_fast_marching/data
+<span class="nt">&lt;path</span><span class="na">_to_toolbox</span><span class="nt">&gt;</span>/toolbox_fast_marching/
+<span class="nt">&lt;path</span><span class="na">_to_toolbox</span><span class="nt">&gt;</span>/toolbox_fast_marching/toolbox
+</pre></div>
+<div class="figure align-right" style="width: 200px; height: auto;">
+<img alt="Fast Marching Method" src="/images/fmtestoutput.png" style="width: 200px; height: auto;"/>
+<p></p>
+<p class="caption">FM toolbox test output</p>
+</div>
+<h2 id="testing">Testing</h2>
+<p>Go to <code>&lt;path_to_toolbox&gt;/toolbox_fast_marching/tests</code> and run <code>test_fast_marching_2d.m</code> but applying changing line 28 to the following:</p>
+<div class="codehilite"><pre><span class="n">end_points</span> <span class="o">=</span> <span class="n">end_points</span><span class="err">'</span><span class="p">;</span>
+</pre></div>
+<p>Now, it should work an provide an output something like (when clicking more or less in the center of the image):</p>
+</section>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="/">Archives</a>
+                <li><a href="/tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="http://stackoverflow.com/users/2283531/javi-v"></a></li>
+                <li><a href="http://github.com/jvgomez"></a></li>
+                <li><a href="https://www.linkedin.com/profile/view?id=105141580"></a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="/index.html">JV - Science and stuff.</a> &copy; Javier V. Gómez 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/theme/bootstrap-collapse.js"></script>
+ 
+</body>
+</html>
