@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="https://jvgomez.github.io/theme/html5.js"></script>
+    <script src="/theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
+    <link href="/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="/theme/local.css" rel="stylesheet">
+    <link href="/theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
 
@@ -39,11 +39,11 @@
         <div class="nav-collapse">
         <ul class="nav">
             
-            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
-            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
-            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
-            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
-            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
+            <li><a href="/pages/about-me.html">About Me</a></li>
+            <li><a href="/pages/other-works.html">Other Works</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <li><a href="/pages/research.html">Research</a></li>
+            <li><a href="/pages/tutorials.html">Tutorials</a></li>
         </ul>
         </div>
         
@@ -80,7 +80,7 @@
     </h1>
     <dl class="section note"><dt>Note</dt><dd> Not all my research code is available. Just because I don't think it is worthy. Contact me if you are interested anyway.</dd></dl>
 <div class="figure align-right" style="width: 200px; height: auto;">
-<img alt="Path planning example" src="https://jvgomez.github.io/images/pathplanning.png" style="width: 200px; height: auto;"/>
+<img alt="Path planning example" src="/images/pathplanning.png" style="width: 200px; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching in a triangulation.</p>
 <!--f
@@ -92,13 +92,13 @@
 <h3 id="path-planning">Path Planning</h3>
 <p>How would you tell a robot to go from one place to another? Or how to move its arms? What if it is an intelligent car?
 There are several different path planning problems and I have explored some of them.</p>
-<p>Most of my research is based in the <strong>Fast Marching Method</strong> and a custom, very useful version: <a href="https://jvgomez.github.io/pages/fast-marching-method-and-fast-marching-square.html"><strong>Fast Marching Square (FM2)</strong></a>.</p>
+<p>Most of my research is based in the <strong>Fast Marching Method</strong> and a custom, very useful version: <a href="/pages/fast-marching-method-and-fast-marching-square.html"><strong>Fast Marching Square (FM2)</strong></a>.</p>
 <p>I am also investigating <em>sampling-based</em> algorithms, focusing on the <strong>Fast Marching Trees (FMT*)</strong>. These algorithms are very fast but it is hard to ensure that they will provide an optimal solution. They work well in many dimensions, where other methods become really slow. In this case, my objective is twofold:
 - Try to make the algorithm as fast a possible.
 - Take into account kinematic (and dynamic) constrains.</p>
 <p>The work in this area is done in close collaboration with <a href="http://web.stanford.edu/~pavone/">Marco Pavone's Autonomous Systems Lab</a> from <a href="http://stanford.edu/">Stanford University</a>.</p>
 <div class="figure align-left" style="width: 100%; height: auto;">
-<img alt="Fast Marching Trees example" src="https://jvgomez.github.io/images/fmt.png" style="width: 100%; height: auto;"/>
+<img alt="Fast Marching Trees example" src="/images/fmt.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching Trees in a 3D (position+orienation) scenario in OMPLapp.</p>
 <!--
@@ -109,13 +109,13 @@ There are several different path planning problems and I have explored some of t
 <br/></p>
 <h3 id="3d-point-cloud-processing-and-environment-modeling">3D Point Cloud Processing and Environment Modeling</h3>
 <p>I did not focus too much in this are. These are some small works I did to introduce myself in this fascinating world. Most of my work in this area is as a Bachelor's thesis advisor. However, my last goal is to combine environment modeling with sampling-based planners. The same datastructures and basic algorithms (KD-trees, Nearest-Neighbours, etc) are used in both fields, so there should be a way to get an advantage of this.</p>
-<p>If you are interested, please check out the <a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a> section to find more works in this area. Especially:</p>
+<p>If you are interested, please check out the <a href="/pages/other-works.html">Other Works</a> section to find more works in this area. Especially:</p>
 <ul>
-<li><a href="https://jvgomez.github.io/pages/walkable-ground-learning-and-estimation.html">Learning-based floor segmentation</a></li>
-<li><a href="https://jvgomez.github.io/pages/automatic-plane-based-indoor-map-reconstruction.html">Room 3D map extraction</a></li>
+<li><a href="/pages/walkable-ground-learning-and-estimation.html">Learning-based floor segmentation</a></li>
+<li><a href="/pages/automatic-plane-based-indoor-map-reconstruction.html">Room 3D map extraction</a></li>
 </ul>
 <div class="figure align-left" style="width: 100%; height: auto;">
-<img alt="3D pointcloud of a corridor." src="https://jvgomez.github.io/images/corridor3D.png" style="width: 100%; height: auto;"/>
+<img alt="3D pointcloud of a corridor." src="/images/corridor3D.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">3D pointcloud of a corridor.</p>
 <!--
@@ -132,7 +132,7 @@ There are several different path planning problems and I have explored some of t
 </iframe></p>
 <h2 id="sgps">SGPS</h2>
 <p></p><div class="figure align-right" style="width: 250px; height: auto;">
-<img alt="SGPS logo" src="https://jvgomez.github.io/images/sgps.png" style="width: 250px; height: auto;"/>
+<img alt="SGPS logo" src="/images/sgps.png" style="width: 250px; height: auto;"/>
 </div>
 <p>__S__unlight intensity-based __G__lobal __P__ositioning __S__ystem. Find a way out to localize outdoor objects using energy efficient systems and algorithms. It is a continuation of my Bacherlor's thesis, collaborating with Frode Eika Sadness and Peyman Mirtaheri. Research based on the Frode's paper: <em>An energy efficient localization strategy for outdoor objects based on intelligent light-intensity sampling</em>.</p>
 <p>I've created a Wiki in which all the code and useful information is uploaded to spread the idea and SGPS so everybody can research about it and get a real good system: <a href="http://sgpsproject.sourceforge.net/wiki">SGPS Project</a></p>
@@ -148,8 +148,8 @@ There are several different path planning problems and I have explored some of t
                 Site
                 </li>
             
-                <li><a href="https://jvgomez.github.io/">Archives</a>
-                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
+                <li><a href="/">Archives</a>
+                <li><a href="/tags.html">Tags</a>
 
 
 
@@ -164,7 +164,7 @@ There are several different path planning problems and I have explored some of t
                 Categories
                 </li>
                 
-                <li><a href="https://jvgomez.github.io/category/news.html">news</a></li>
+                <li><a href="/category/news.html">news</a></li>
                    
             </ul>
             </div>

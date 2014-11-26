@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="https://jvgomez.github.io/theme/html5.js"></script>
+    <script src="/theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
+    <link href="/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="/theme/local.css" rel="stylesheet">
+    <link href="/theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
 
@@ -39,11 +39,11 @@
         <div class="nav-collapse">
         <ul class="nav">
             
-            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
-            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
-            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
-            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
-            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
+            <li><a href="/pages/about-me.html">About Me</a></li>
+            <li><a href="/pages/other-works.html">Other Works</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <li><a href="/pages/research.html">Research</a></li>
+            <li><a href="/pages/tutorials.html">Tutorials</a></li>
         </ul>
         </div>
         
@@ -84,8 +84,8 @@
 <h2 id="theoretical-background">Theoretical background</h2>
 <p>The path planning algorithms employed in this section are the <strong>Fast Marching Method</strong> and the <strong>Fast Marching Square</strong> method. Those methods are really similar to Dijkstra's method: From a given point, the distance of all the surrounding points is computed incrementally. Somehow, it is like if we are propagating a wave from the start point. This wave explores the whole map until the goal point is found. This process creates a distances map which says "how far" every point is from the start point. Then, if we apply gradient descent method from the goal point, we will reach the start point following the minimum-distance path.</p>
 <p>Fast Marching Square substitutes the term <em>distance</em> by <em>arrival time</em>. In this case, the wave does not propagate at constant velocity. It propagates slower as it gets close to obstacles. At the end, the distances map obtained is very similar. However, when gradient descent is run, the path obtained is safer (it does not get close to obstacles) and smoother. These are desirable properties when applied to robotics.</p>
-<p>If you interested in deeply understand the algorithms, take a look at my <a href="https://jvgomez.github.io/pages/fast-marching-method-and-fast-marching-square.html">Research section</a>.</p>
-<p>The underlying Fast Marching code relies on a rather complex <a href="https://jvgomez.github.io/pages/n-dimensional-gridmaps-formulation-and-implementation.html"><strong>nDGridMap class</strong></a>: A datastructure representing a n dimensional grid map.</p>
+<p>If you interested in deeply understand the algorithms, take a look at my <a href="/pages/fast-marching-method-and-fast-marching-square.html">Research section</a>.</p>
+<p>The underlying Fast Marching code relies on a rather complex <a href="/pages/n-dimensional-gridmaps-formulation-and-implementation.html"><strong>nDGridMap class</strong></a>: A datastructure representing a n dimensional grid map.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>
@@ -113,7 +113,7 @@
 </pre></div>
 <p>Click in any two white points of the map. In my case I clicked in the red circles (first start at top-left, then goal at bottom-right):</p>
 <div class="figure align-left" style="width: 100%; height: auto;">
-<img alt="Input map" src="https://jvgomez.github.io/images/fm_biicode/map.png" style="width: 100%; height: auto;"/>
+<img alt="Input map" src="/images/fm_biicode/map.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Input map used in the example with the start and goal regions marked as red circles.</p>
 <!--
@@ -130,8 +130,8 @@
 </li>
 </ul>
 <div class="figure align-left" style="width: 100%; height: auto;">
-<img alt="FMM distances map" src="https://jvgomez.github.io/images/fm_biicode/distances.png" style="width: 49%; height: auto;"/>
-<img alt="FMM path" src="https://jvgomez.github.io/images/fm_biicode/path.png" style="width: 49%; height: auto;"/>
+<img alt="FMM distances map" src="/images/fm_biicode/distances.png" style="width: 49%; height: auto;"/>
+<img alt="FMM path" src="/images/fm_biicode/path.png" style="width: 49%; height: auto;"/>
 <p></p>
 <p class="caption">Left - FMM distances map. Right - Path obtained running gradient descent.</p>
 <!--
@@ -147,7 +147,7 @@
 <p>Congratulations! You just created, configured, compiled and run a path planning algorithm. With any other library this could have taken hours even if you are experienced.</p>
 <h3 id="lets-take-a-look-at-what-happened">Let's take a look at what happened</h3>
 <div class="figure align-right" style="width: 33%; height: auto;">
-<img alt="Biicode folder directory tree" src="https://jvgomez.github.io/images/fm_biicode/tree.png" style="width: 100%; height: auto;"/>
+<img alt="Biicode folder directory tree" src="/images/fm_biicode/tree.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Biicode folder directory tree.</p>
 <!--
@@ -191,7 +191,7 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
 </pre></div>
 <p>Et voilá! You have now the Fast Marching Square algorithm running and Biicode managed the dependenies for you (since a new block is required). The new path should look something like:</p>
 <div class="figure align-right" style="width: 100%; height: auto;">
-<img alt="FM2 path" src="https://jvgomez.github.io/images/fm_biicode/path2.png" style="width: 100%; height: auto;"/>
+<img alt="FM2 path" src="/images/fm_biicode/path2.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">Fast Marching Square resulting path. Dependencies were automatically managed by Biicode</p>
 <!--
@@ -274,7 +274,7 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
 <div class="highlight"><pre><span class="n">FastMarching</span><span class="o">&lt;</span> <span class="n">nDGridMap</span><span class="o">&lt;</span><span class="n">FMCell</span><span class="p">,</span> <span class="n">ndims</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">fmm</span><span class="p">;</span> <span class="o">---&gt;</span>  <span class="n">FastMarching</span><span class="o">&lt;</span> <span class="n">FMGrid2D</span> <span class="o">&gt;</span> <span class="n">fmm</span><span class="p">;</span>
 </pre></div>
 <h2 id="contact">Contact</h2>
-<p>Any problem with this tutorial? Questions? <a href="https://jvgomez.github.io/pages/about-me.html">Contact me!</a>.</p>
+<p>Any problem with this tutorial? Questions? <a href="/pages/about-me.html">Contact me!</a>.</p>
 </section>
         </div>
         
@@ -286,8 +286,8 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
                 Site
                 </li>
             
-                <li><a href="https://jvgomez.github.io/">Archives</a>
-                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
+                <li><a href="/">Archives</a>
+                <li><a href="/tags.html">Tags</a>
 
 
 
@@ -302,7 +302,7 @@ with your favourite editor the <code>main.cpp</code> file and carry out the foll
                 Categories
                 </li>
                 
-                <li><a href="https://jvgomez.github.io/category/news.html">news</a></li>
+                <li><a href="/category/news.html">news</a></li>
                    
             </ul>
             </div>

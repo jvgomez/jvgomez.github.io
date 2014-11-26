@@ -9,14 +9,14 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="https://jvgomez.github.io/theme/html5.js"></script>
+    <script src="/theme/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
-    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
+    <link href="/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="/theme/local.css" rel="stylesheet">
+    <link href="/theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
 
@@ -39,11 +39,11 @@
         <div class="nav-collapse">
         <ul class="nav">
             
-            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
-            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
-            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
-            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
-            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
+            <li><a href="/pages/about-me.html">About Me</a></li>
+            <li><a href="/pages/other-works.html">Other Works</a></li>
+            <li><a href="/pages/publications.html">Publications</a></li>
+            <li><a href="/pages/research.html">Research</a></li>
+            <li><a href="/pages/tutorials.html">Tutorials</a></li>
         </ul>
         </div>
         
@@ -81,7 +81,7 @@
     </h1>
     <p>It all started in a cold winter morning, after spending 2 weeks trying to create a hierarchy of C++ classes to implement functions valid to any kind of grid map, it turned out that the best solution were to work with grid indices and forget about coordinates! This way we can parametrize everything. "There should be something on the Internet about this". After a few hours looking for how to extract neighbors of grids with number and size of dimensions not fixed I decided it was time to try it by myself...</p>
 <div class="figure align-right" style="width: 300px; height: auto;">
-<img alt="ND gridmap formulation" src="https://jvgomez.github.io/images/ndgridmap/ndgrid_handwriting.png" style="width: 100%; height: auto;"/>
+<img alt="ND gridmap formulation" src="/images/ndgridmap/ndgrid_handwriting.png" style="width: 100%; height: auto;"/>
 <p></p>
 <p class="caption">FM toolbox test output</p>
 </div>
@@ -89,27 +89,27 @@
 <p>In this page I posted a document (and its sources) to understand the mathematical formulation and generalization of n-dimensional grid maps. Also a link to my implementation of a grid map of n dimension is provided. The main characteristics here are that it is easy to use.</p>
 <h3 id="downloads">Downloads</h3>
 <ul>
-<li><a href="https://jvgomez.github.io/files/works/ndneighbors/nd-neighbors.pdf">Report with the detailed formulation</a></li>
-<li><a href="https://jvgomez.github.io/files/works/ndneighbors/nd-neighbors.zip">Report and image sources</a></li>
+<li><a href="/files/works/ndneighbors/nd-neighbors.pdf">Report with the detailed formulation</a></li>
+<li><a href="/files/works/ndneighbors/nd-neighbors.zip">Report and image sources</a></li>
 </ul>
 <h3 id="source-code">Source code</h3>
 <ul>
-<li><a href="https://www.biicode.com/jvgomez/ndgridmap">Biicode block</a>: Recommended! Check out my <a href="https://jvgomez.github.io/pages/introduction-to-path-planning-made-easier-with-biicode.html">Path Planning tutorial</a> to learn how to use it.</li>
+<li><a href="https://www.biicode.com/jvgomez/ndgridmap">Biicode block</a>: Recommended! Check out my <a href="/pages/introduction-to-path-planning-made-easier-with-biicode.html">Path Planning tutorial</a> to learn how to use it.</li>
 <li><a href="https://github.com/jvgomez/fastmarching/tree/master/ndgridmap">Github repository</a>: Included in my Fast Marching code.</li>
 </ul>
 <h3 id="generalized-neighbors-extraction">Generalized neighbors extraction</h3>
 <p>The formulation for a 2D grid are summarized in the following pixs. Hard to understand if the report has not been read:</p>
 <p>For a 2D and 3D grids, neighbors are:</p>
 <div class="figure align-right" style="width: 100%; height: auto;">
-<img alt="2D Neighbors" src="https://jvgomez.github.io/images/ndgridmap/2dgrid.png" style="width: 42%; height:
+<img alt="2D Neighbors" src="/images/ndgridmap/2dgrid.png" style="width: 42%; height:
 auto;"/>
-<img alt="3D Neighbors" src="https://jvgomez.github.io/images/ndgridmap/3dgrid.png" style="width: 57%; height: auto;"/>
+<img alt="3D Neighbors" src="/images/ndgridmap/3dgrid.png" style="width: 57%; height: auto;"/>
 <p></p>
 <p class="caption">Von-Neumann (4-connectivity) neighbors computation for 2D and 3D grids.</p>
 </div>
 <p>Therefore, for a nD grid:</p>
 <div class="figure align-center" style="width: 50%; height: auto;">
-<img alt="nD Neighbors" src="https://jvgomez.github.io/images/ndgridmap/ndgrid.png" style="width: 100%; height:
+<img alt="nD Neighbors" src="/images/ndgridmap/ndgrid.png" style="width: 100%; height:
 auto;"/>
 <p class="caption">Von-Neumann (4-connectivity) neighbors computation for nD grids.</p>
 </div>
@@ -124,7 +124,7 @@ auto;"/>
 <br/>
 <br/></p>
 <div class="figure align-right" style="width: 50%; height: auto;">
-<img alt="Coordinates to index" src="https://jvgomez.github.io/images/ndgridmap/coord2idx.png" style="width: 100%; height:
+<img alt="Coordinates to index" src="/images/ndgridmap/coord2idx.png" style="width: 100%; height:
 auto;"/>
 <p class="caption">Von-Neumann (4-connectivity) coordinates to index conversion.</p>
 </div>
@@ -134,7 +134,7 @@ auto;"/>
 <br/>
 <br/></p>
 <div class="figure align-right" style="width: 50%; height: auto;">
-<img alt="Index to coordinates" src="https://jvgomez.github.io/images/ndgridmap/idx2coord.png" style="width: 100%; height:
+<img alt="Index to coordinates" src="/images/ndgridmap/idx2coord.png" style="width: 100%; height:
 auto;"/>
 <p class="caption">Von-Neumann (4-connectivity) index to coordinates conversion.</p>
 </div>
@@ -150,8 +150,8 @@ auto;"/>
                 Site
                 </li>
             
-                <li><a href="https://jvgomez.github.io/">Archives</a>
-                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
+                <li><a href="/">Archives</a>
+                <li><a href="/tags.html">Tags</a>
 
 
 
@@ -166,7 +166,7 @@ auto;"/>
                 Categories
                 </li>
                 
-                <li><a href="https://jvgomez.github.io/category/news.html">news</a></li>
+                <li><a href="/category/news.html">news</a></li>
                    
             </ul>
             </div>
