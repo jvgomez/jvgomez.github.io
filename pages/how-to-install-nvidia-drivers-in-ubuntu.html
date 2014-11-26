@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JV - Science and stuff.</title>
+    <meta name="description" content="">
+    <meta name="author" content="Javier V. Gómez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://jvgomez.github.io/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="/index.html">JV - Science and stuff.</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
+            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
+            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
+            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
+            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+<section id="content" class="body">
+    <h1 class="content-title">
+        How to install NVIDIA drivers in Ubuntu
+
+    </h1>
+    <p>First of all download the driver you need from the official website. Then log out and press <code>CTRL+ALT+F1</code> (to go to a virtual terminal, this is mandatory) and type the next sequence of commands:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo /etc/init.d/gdm stop <span class="o">(</span><span class="k">for</span> GNOME or the equivalent on KDE<span class="o">)</span>
+<span class="nv">$ </span><span class="nb">cd</span> &lt;drivers_path&gt;
+<span class="nv">$ </span>sudo sh &lt;driver_filename&gt;
+<span class="nv">$ </span>sudo aptitude install nvidia-glx linux-restricted-common
+<span class="nv">$ </span>sudo nvidia-xconfig
+<span class="nv">$ </span>sudo /etc/init.d/gdm start
+</pre></div>
+<p>Since I'm not a Linux expert I can't say exactly if the <code>linux-restricted-common</code> package is mandatory (I think it is included in Ubuntu, the same with <code>nvidia-glx</code>), but well... just type it and nothing will go wrong.</p>
+<p><strong>UPDATE:</strong> This works properly, but in some cases the driver cna break and you Ubuntu will return to its original appearance. Although all the programs will remain installed, in the graphic interface you won't probably see any program installed after Ubuntu. I still don't know how to fix this or why it is.</p>
+</section>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="https://jvgomez.github.io/">Archives</a>
+                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="https://jvgomez.github.io/category/news.html">news</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="http://stackoverflow.com/users/2283531/javi-v"></a></li>
+                <li><a href="http://github.com/jvgomez"></a></li>
+                <li><a href="https://www.linkedin.com/profile/view?id=105141580"></a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="/index.html">JV - Science and stuff.</a> &copy; Javier V. Gómez 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/theme/bootstrap-collapse.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-21664985-2', 'auto');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+
+</script>
+ 
+</body>
+</html>

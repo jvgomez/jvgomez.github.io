@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JV - Science and stuff.</title>
+    <meta name="description" content="">
+    <meta name="author" content="Javier V. Gómez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://jvgomez.github.io/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="/index.html">JV - Science and stuff.</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
+            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
+            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
+            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
+            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+<section id="content" class="body">
+    <h1 class="content-title">
+        Solving issues with GLIBCXX and libstdc++
+
+    </h1>
+    <h2 id="update">UPDATE</h2>
+<p>A simple workaround seems to be yo use</p>
+<div class="highlight"><pre><span class="nv">$ </span>locate libstdc++.so
+</pre></div>
+<p>And in Matlab:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;</span> <span class="n">LD_PRELOAD</span><span class="p">=</span><span class="s">'path/to/libstdc++.so'</span>
+</pre></div>
+<p>More info <a href="https://github.com/kyamagu/mexopencv/issues/45">here</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>All this was done in Ubuntu 12.04 64 bits.</dd></dl>
+<h2 id="problem">Problem</h2>
+<p>When using Matlab and external programs or mex compiled functions it can occur that:</p>
+<div class="highlight"><pre><span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">"color:#ff0000"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;path</span> <span class="err">to</span> <span class="err">matlab</span><span class="nt">&gt;</span> /MATLAB/R2011a/sys/os/glnx86/libstdc++.so.6: version `GLIBCXX_3.4.15' not found (    required by <span class="nt">&lt;whatsoever&gt;</span>)
+<span class="nt">&lt;/span&gt;</span>
+</pre></div>
+<p>This problem comes from the GCC program. It seems that this library <code>libstdc++.so.6</code> is compiled but not installed when installing GCC (<a href="http://stackoverflow.com/questions/5216399/usr-lib-libstdc-so-6-version-glibcxx-3-4-15-not-found">link</a>).</p>
+<p>Another problem could be that the version of <code>libstdc++.so.6</code> is so old so your version of <code>GLIBCXX</code> is older that the one you are required.</p>
+<p>The simplest solution is to check where is linked the following file (<a href="http://judsonsnotes.com/notes/index.php?option=com_content&amp;view=article&amp;id=611:matlab-running-external-programs&amp;catid=57:programming&amp;Itemid=81">link</a>):</p>
+<div class="highlight"><pre>&lt;path to matlab&gt; /MATLAB/R2011a/sys/os/glnx86/libstdc++.so.6
+</pre></div>
+<p>By using the locate command:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo updatedb
+<span class="nv">$ </span>locate libstdc++.so.6
+</pre></div>
+<p>And it will return something like:</p>
+<div class="highlight"><pre>libstdc++.so.6 -&gt; libstdc++.so.6.0.10
+</pre></div>
+<p>So now you have information enough to <em>update</em> the link you the libstdc++.so.6 by creating a symbolic link:</p>
+<div class="highlight"><pre> <span class="nv">$ </span>ln -sf  /usr/lib/i386-linux-gnu/libstdc++.so.6.0.16 /usr/local/MATLAB/R2011a/sys/os/glnx86/libstdc++.so.6
+</pre></div>
+<h3 id="update_1">UPDATE!</h3>
+<p>When solving the previous error, the same error appeared but in another folder, so just recreate the symbolic link with the proper folder and in will work without doing all the following stuff (don't care about versions, I was doing this in other pc):</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo ln -sf /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.16 /usr/local/MATLAB/R2012a/bin/glnxa64/libstdc++.so.6
+</pre></div>
+<p>This solution could fix the problem of running external programs from Matlab, such as GNUplot.</p>
+<p>My case was much harder: I was using mex files, and those mex files were compiling OK but when running the <code>mex64a</code> files MATLAB was not able to find that library. Eventhough MATLAB includes that library within its files...</p>
+<p>Before testing every solution, be sure to close Matlab and open it again.</p>
+<p>You can try the following things:</p>
+<ul>
+<li>
+<p>Update symbolic links (<a href="http://buildall.wordpress.com/2011/04/21/glibcxx_3-4-15-not-found-after-install-gcc-4-6/">link</a>):</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo cp gcc/build/x86_64-unknown-linux-gnu/libstdc++-v3/src/.libs/libstdc++.so.6.0.15 /usr/lib/
+</pre></div>
+<p>Note that <code>gcc/build/x86_64-unknown-linux-gnu/libstdc++-v3/src/.libs/libstdc++.so.6.0.15</code> is the trunk compiled from the GCC. You won't probably have that, but if you have <code>libstdc++.so.6.0.15</code> (or whatever) in other folder just change this folder. Recreate the symbolic links:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo rm libstdc++.so libstdc++.so.6
+<span class="nv">$ </span>sudo ln -s libstdc++.so.6.0.15 libstdc++.so
+<span class="nv">$ </span>sudo ln -s libstdc++.so.6.0.15 libstdc++.so.6
+</pre></div>
+</li>
+<li>
+<p>Get GCC code and compile it locally (<a href="http://ehren.wordpress.com/2009/09/20/building-gcc-from-trunk/">link</a>) Before that, try to remove all the symbolic links previously done or already existing before the error, and revert all the stuff you have done until now. So, here we go!:
+First install Subversion and get the code from the repository (<a href="http://ehren.wordpress.com/2009/09/20/building-gcc-from-trunk/">link</a>):</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install subversion
+<span class="nv">$ </span>svn checkout svn://gcc.gnu.org/svn/gcc/trunk srcdir
+</pre></div>
+<p>Check the repository <a href="http://gcc.gnu.org/svn/gcc/">here</a> in case you rather prefer getting a branch than the trunk version. While downloading (it takes a long while), open a terminal and create the Makefile from the configure:</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>srcdir
+<span class="nv">$ </span>./configure --enable-checking<span class="o">=</span>release --enable-languages<span class="o">=</span>c,c++
+</pre></div>
+<p>These options are the one which worked from me. To make the compilation faster other options you can add are <code>--disable-libquadmath</code> if not using fortran, and <code>--disable-libmudflap</code> and <code>--disable-libitm</code> if you don't want to use those features. You can also speed up builds by using <code>--disable-bootstrap CFLAGS="-g3 -O0"</code> (<a href="http://gcc.gnu.org/ml/gcc-help/2011-12/msg00068.html">link</a>).
+After that, the output will probably look as follows:</p>
+<div class="highlight"><pre>checking for correct version of gmp.h... no
+checking for the correct version of mpc.h... no
+configure: error: Building GCC requires GMP 4.2+ and MPFR 2.3.2+.
+Try the --with-gmp and/or --with-mpfr options to specify their locations.
+Copies of these libraries' source code can be found at their respective
+hosting sites as well as at ftp://gcc.gnu.org/pub/gcc/infrastructure/.
+See also http://gcc.gnu.org/install/prerequisites.html for additional info.
+If you obtained GMP and/or MPFR from a vendor distribution package, make
+sure that you have installed both the libraries and the header files.
+They may be located in separate packages.
+</pre></div>
+<p>So you will need to add the missing dependencies:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install libgmp3c2 libmpfr-dev
+</pre></div>
+<p>If you are working in a 64bits-machine, the compilation will probably fail if you do not write the following before start compiling (<a href="http://ubuntuforums.org/showthread.php?t=1877944">link</a>):</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install libc6-dev-i386 fastjar zip
+</pre></div>
+<p>Finally, we can compile:</p>
+<div class="highlight"><pre><span class="nv">$ </span>make
+</pre></div>
+<p>After 3-4 hours (in my case) you can run <code>sudo make install</code> if you want to use the latest version of GCC. I did:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo make install
+</pre></div>
+<p>And everything was broken :) Don't worry. Since the new compiler is installed, it is going to be called by default when trying to compile something but it is not configured. Keep reading.
+Both if you don't want to install GCC trunk version or you already did, to solve the initial problem, the final step is to copy the file we just compiled</p>
+<div class="highlight"><pre>srcdir/x86_64-unknown-linux-gnu/libstdc++-v3/src/.libs/libstdc++.so.6.0.18
+</pre></div>
+<p>to <code>/usr/lib/</code> or any other folder such as <code>/usr/local/lib/</code> in my case (it could be installed there by another program). If copied to this folder, go to bashrc and include the following line:</p>
+<div class="highlight"><pre><span class="nv">$ </span>gedit ~/.bashrc
+<span class="nv">$ LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:/usr/local/lib <span class="p">;</span> <span class="nb">export </span>LD_LIBRARY_PATH
+<span class="nv">$ </span>sudo gedit /etc/ld.so.conf
+</pre></div>
+<p>Then run</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo /sbin/ldconfig
+</pre></div>
+<p>Once again, generate the symbolic links:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo ln -s libstdc++.so.6.0.18 libstdc++.so
+<span class="nv">$ </span>sudo ln -s libstdc++.so.6.0.18 libstdc++.so.6
+</pre></div>
+<p>After all this stuff, a lot of things have been done so it is probable that some symbolic links or .so files are messed up. Currently, all these commands worked for me but the state I left my computer is a mess (I have 3 different symbolic links for <code>libstdc++.so.6</code> and <code>libstdc++.so.5</code>) But so far, it works :)</p>
+</li>
+</ul>
+<p>Of course, the mex files of Matlab have to be compiled again.</p>
+<p>Useful notes:</p>
+<ul>
+<li>With <code>$ ls -al</code> it is possible to see where it is a library pointing. There are other commands for this but I can't remember.</li>
+</ul>
+</section>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="https://jvgomez.github.io/">Archives</a>
+                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="https://jvgomez.github.io/category/news.html">news</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="http://stackoverflow.com/users/2283531/javi-v"></a></li>
+                <li><a href="http://github.com/jvgomez"></a></li>
+                <li><a href="https://www.linkedin.com/profile/view?id=105141580"></a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="/index.html">JV - Science and stuff.</a> &copy; Javier V. Gómez 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/theme/bootstrap-collapse.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-21664985-2', 'auto');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+
+</script>
+ 
+</body>
+</html>

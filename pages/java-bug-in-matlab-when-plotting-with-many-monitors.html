@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JV - Science and stuff.</title>
+    <meta name="description" content="">
+    <meta name="author" content="Javier V. Gómez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://jvgomez.github.io/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="/index.html">JV - Science and stuff.</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
+            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
+            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
+            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
+            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+<section id="content" class="body">
+    <h1 class="content-title">
+        Java bug in Matlab when plotting with many monitors
+
+    </h1>
+    <p>When you have more than one monitor, usually Matlab throws an error related with Java when new figures appear in the monitor in which is not Matlab. To solve this, go to <code>&lt;dir to Matlab&gt;/toolbox/local</code>:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo gedit matlabrc.m
+</pre></div>
+<p>Add to the end of the file:</p>
+<div class="highlight"><pre><span class="c">% Needed to fix dual monitor setup:</span>
+<span class="n">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s">'DefaultFigureRenderer'</span><span class="p">,</span><span class="s">'OpenGL'</span><span class="p">)</span>
+<span class="n">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s">'DefaultFigureRendererMode'</span><span class="p">,</span> <span class="s">'manual'</span><span class="p">)</span>
+</pre></div>
+</section>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="https://jvgomez.github.io/">Archives</a>
+                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="https://jvgomez.github.io/category/news.html">news</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="http://stackoverflow.com/users/2283531/javi-v"></a></li>
+                <li><a href="http://github.com/jvgomez"></a></li>
+                <li><a href="https://www.linkedin.com/profile/view?id=105141580"></a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="/index.html">JV - Science and stuff.</a> &copy; Javier V. Gómez 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/theme/bootstrap-collapse.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-21664985-2', 'auto');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+
+</script>
+ 
+</body>
+</html>

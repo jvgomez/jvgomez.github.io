@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JV - Science and stuff.</title>
+    <meta name="description" content="">
+    <meta name="author" content="Javier V. Gómez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://jvgomez.github.io/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/local.css" rel="stylesheet">
+    <link href="https://jvgomez.github.io/theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="/index.html">JV - Science and stuff.</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="https://jvgomez.github.io/pages/about-me.html">About Me</a></li>
+            <li><a href="https://jvgomez.github.io/pages/other-works.html">Other Works</a></li>
+            <li><a href="https://jvgomez.github.io/pages/publications.html">Publications</a></li>
+            <li><a href="https://jvgomez.github.io/pages/research.html">Research</a></li>
+            <li><a href="https://jvgomez.github.io/pages/tutorials.html">Tutorials</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+<section id="content" class="body">
+    <h1 class="content-title">
+        How to configure a C/C++ project with Eclipse and CMake
+    <h3>Contents:
+        <h4>
+           <nav class="toc">
+           <div class="toc">
+<ul>
+<li><a href="#changing-the-user-name-in-eclipse">Changing the user name in Eclipse</a></li>
+<li><a href="#using-cmake-eclipse-cdt4">Using CMake Eclipse CDT4</a><ul>
+<li><a href="#in-source-builds">In-Source Builds</a></li>
+<li><a href="#out-of-source-builds">Out-Of-Source Builds</a><ul>
+<li><a href="#version-control-integration-in-eclipse">Version Control Integration in Eclipse</a></li>
+<li><a href="#accessing-the-source-and-advanced-editing-features">Accessing the Source and Advanced Editing Features</a></li>
+</ul>
+</li>
+<li><a href="#discussion-about-limitations">Discussion about limitations</a></li>
+</ul>
+</li>
+<li><a href="#manual-method">Manual Method</a><ul>
+<li><a href="#create-an-eclipse-project">Create an Eclipse Project</a></li>
+<li><a href="#create-eclipse-make-targets">Create Eclipse Make Targets</a></li>
+<li><a href="#set-up-the-eclipse-cdt-builder">Set Up the Eclipse CDT Builder</a></li>
+</ul>
+</li>
+<li><a href="#build-the-project">Build the Project</a><ul>
+<li><a href="#source">Source</a></li>
+</ul>
+</li>
+</ul>
+</div>
+           </nav>
+        </h4>
+    </h3>
+
+    </h1>
+    <p>I'm not an expert in CMake. Actually, I always programmed in Geany which is the most simple IDE and I run cmake . and make directly from the terminal or modifying a little bit the Geany configuration. Now, I'm starting to work with Eclipse (since is one of the most used environments for many many different programming languages). It was not easy to create a project which works with CMake (I want my programs to be as cross-platform as possible, so this was a requirement). The main reference site for this is the <a href="http://www.cmake.org/Wiki/CMake:Eclipse_UNIX_Tutorial">CMake WikiSite</a>.</p>
+<p>I will explain here two types: the recommended method and the manual method.</p>
+<h2 id="changing-the-user-name-in-eclipse">Changing the user name in Eclipse</h2>
+<p>I know this is not the correct place for this one, but it is just a small trick. The variable <code>${user}</code> in Eclipse takes the OS name, and this one is probably not the best for our templates. Just go to <code>eclipse.ini</code> (in the root folder of Eclipse) and add the following line:</p>
+<div class="highlight"><pre>-Duser.name=&lt;Insert name&gt;
+</pre></div>
+<p>A brief example of my <code>eclipse.ini</code> (the necessary part, the .ini is larger):</p>
+<div class="highlight"><pre>__openFile__
+-vmargs
+-Dosgi.requiredJavaVersion<span class="o">=</span>1.6
+-XX:MaxPermSize<span class="o">=</span>256m
+-Xms40m
+-Xmx384m
+-Duser.name<span class="o">=</span>Javier V. Gómez
+</pre></div>
+<h2 id="using-cmake-eclipse-cdt4">Using CMake Eclipse CDT4</h2>
+<p>Starting with version 2.6.0 CMake includes a generator for Eclipse CDT 4.0 or newer. It works together with the Makefile generators (i.e. "Unix Makefiles", "MinGW Makefiles", "MSYS Makefiles", and maybe "NMake Makefiles"). This generator creates a set of <code>.project/.cproject</code> files that can be imported in Eclipse as an "Existing Eclipse project".</p>
+<p>Note that CMake 2.4.x users may follow instructions provided <a href="http://www.cmake.org/Wiki/CMake:Eclipse_UNIX_Tutorial">here</a> in order to setup an Eclipse+CMake usage <em>manually</em>.</p>
+<p>Using the Eclipse CDT4 generator isn't different than using any other CMake generator.  It works for in-source and out-of-source builds.  In this example, we'll assume that the source tree of the project is <code>/home/eric/certi_src</code>.</p>
+<p>Be sure to have a proper CMakeLists.txt file in the src directory.  For instance, if you get an error such as Undefined Reference when you import into Eclipse, make sure you have the <code>TARGET_LINK_LIBRARIES</code> set correctly.</p>
+<div class="highlight"><pre><span class="nb">TARGET_LINK_LIBRARIES</span><span class="p">(</span><span class="s">AwesomeProjectMain</span> <span class="s">ITKCommon</span> <span class="s">ITKIO</span> <span class="s">ITKBasicFilters</span><span class="p">)</span>
+</pre></div>
+<p>On Linux, these libraries may exist in the bin subdirectory under the ITK Root Directory with a <code>.a</code> extension.</p>
+<p>Create a build directory, go there and run CMake (see below for commandline). Make sure you set your <code>CMAKE_BUILD_TYPE</code> to <code>Debug</code> if you want to debug your project with gdb inside of Eclipse CDT. This is not done automatically (especially when using <code>cmake-gui</code>)</p>
+<div class="highlight"><pre>mkdir /home/eric/certi_build
+<span class="nb">cd</span> /home/eric/certi_build
+cmake -G<span class="s2">"Eclipse CDT4 - Unix Makefiles"</span> -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../certi_src
+</pre></div>
+<dl class="section note"><dt>Important Note</dt><dd>Your project name should be different from your executable name and different from your build folder name. Otherwise, Eclipse will NOT pick up your executable as you build them.</dd></dl>
+<p>Since my build folder name is <code>certi_build</code>, a <code>CMakeLists.txt</code> file like below should work (notice the difference in project name and executable name)</p>
+<div class="highlight"><pre><span class="nb">PROJECT</span><span class="p">(</span><span class="s">AwesomeProject</span><span class="p">)</span>
+<span class="nb">ADD_EXECUTABLE</span><span class="p">(</span><span class="s">AwesomeProjectMain</span>
+  <span class="s">main.cpp</span>
+  <span class="s">util.h</span>
+  <span class="s">util.cpp</span>
+<span class="p">)</span>
+</pre></div>
+<p>You will now find two Eclipse files in your build tree:</p>
+<div class="highlight"><pre>certi_build/.project
+certi_build/.cproject
+</pre></div>
+<p>Import the created project file into Eclipse
+- Import project using Menu <code>File-&gt;Import</code>.
+- Select <code>General-&gt;Existing projects into workspace</code>.
+- Browse where your build tree is and select the root build tree directory. Keep "Copy projects into workspace" unchecked.
+- You get a fully functional eclipse project.</p>
+<p>You can edit your <code>CMakeLists.txt</code> file inside of Eclipse CDT, a plugin called <a href="http://www.cthing.com/CMakeEd.asp">CMakeEd</a> can help you with this task. When you edit your <code>CMakeLists.txt</code> file, you are recommended to delete your project and reimport it.</p>
+<h3 id="in-source-builds">In-Source Builds</h3>
+<p>In-Source builds are fully supported by the Eclipse project generator.</p>
+<h3 id="out-of-source-builds">Out-Of-Source Builds</h3>
+<p>Eclipse has two issues with out-of-source builds, the project generator tries to work around them as best as it can. The details are described below.</p>
+<h4 id="version-control-integration-in-eclipse">Version Control Integration in Eclipse</h4>
+<p>Eclipse supports version control systems, e.g. cvs and svn, but for them to work, the project files must be at the root of the source tree. This is not the case with out-of-source builds.  The only way to get version control for your project in Eclipse is to have a separate project in the source tree for this purpose.  You can either create this project manually or tell CMake to create it for you when creating your project files:</p>
+<div class="highlight"><pre>cmake -G<span class="s2">"Eclipse CDT4 - Unix Makefiles"</span> -DECLIPSE_CDT4_GENERATE_SOURCE_PROJECT<span class="o">=</span>TRUE ../certi_src
+</pre></div>
+<p>This will create your normal project in the build tree and additionally an extra project in the source tree, we call it the <em>source-project</em>. In Eclipse you can then import this source-project the same way as you import the normal project. This way you'll have two (or more) projects, one for browsing the sources and doing version control, the other for building your project.</p>
+<h4 id="accessing-the-source-and-advanced-editing-features">Accessing the Source and Advanced Editing Features</h4>
+<p>Eclipse has advanced support for editing C/C++ sources, including code navigation, autocompletion etc.
+For that to work the sources must be inside the project (the additional source-project from above is not inside the project). The Eclipse project generator therefore creates a linked resource to the source tree in the Eclipse project. This makes the C/C++ features work.</p>
+<p>This linked resource isn't created if the build directory is a subdirectory of the source directory because Eclipse <strong>doesn't</strong> allow to load projects which have linked resources pointing to a parent directory. So we recommend to <strong>create your build directories not as children, but as siblings</strong> to the source directory.  E.g.:</p>
+<div class="highlight"><pre>/path/to/source
+/path/to/build
+</pre></div>
+<h3 id="discussion-about-limitations">Discussion about limitations</h3>
+<p>If you would like to monitor the changes to the EclipseCDT4 support, you can view the following links which contain the git history log for changes to the two main files:
+- http://cmake.org/gitweb?p=cmake.git;a=blob;f=Source/cmExtraEclipseCDT4Generator.h;hb=HEADcmExtraEclipseCDT4Generator.h
+- http://cmake.org/gitweb?p=cmake.git;a=blob;f=Source/cmExtraEclipseCDT4Generator.cxx;hb=HEADcmExtraEclipseCDT4Generator.cxx</p>
+<p>Eclipse assumes project files (i.e. .project and .cproject) <em>must be at the root of the project tree</em> <strong>and</strong> a project may be handled by a versioning system (CVS, SVN, ...) if <em>the root project tree is</em>.</p>
+<p>This assumption clashes with the fact that CMake generated files should <em>stay in the build tree</em> whereas source files (which are usually those handled by a versioning system) reside <em>in the source tree</em>.</p>
+<p>There has been a fair amount of discussion regarding this problem of the Eclipse CDT4 Generator:</p>
+<ul>
+<li><a href="http://www.cmake.org/pipermail/cmake/2007-October/016956.html">Trouble with CMake + Eclipse + SVN/CVS</a></li>
+<li><a href="http://www.cmake.org/pipermail/cmake/2007-August/015504.html"><strong>Updated</strong> Eclipse CDT4 CMake Generator - Pre-Alpha version</a></li>
+<li><a href="http://dev.eclipse.org/mhonarc/lists/platform-cvs-dev/msg00462.html"> Partially Shared project using Eclipse CDT (cdt-dev ML)</a></li>
+</ul>
+<h2 id="manual-method">Manual Method</h2>
+<h3 id="create-an-eclipse-project">Create an Eclipse Project</h3>
+<p>Create an Eclipse <a href="http://www.eclipse.org/cdt/">CDT (C/C++ Development Tooling) project</a> using the <code>File &gt; New &gt; C++ Project</code> command for your C++ project, or <code>File &gt; New &gt; C Project</code> for a C project.</p>
+<p>Do not create the project using the <a href="http://www.cmake.org/cmake/help/cmake-2-8-docs.html#gen:EclipseCDT4-UnixMakefiles">CMake Eclipse project generator</a>.</p>
+<h3 id="create-eclipse-make-targets">Create Eclipse Make Targets</h3>
+<p>The conventional approach to <a href="http://www.cmake.org/Wiki/CMake:Eclipse_UNIX_Tutorial">using CMake with Eclipse</a> is to create an external tool in Eclipse. However, a <code>Make Target</code> is simpler, and because it is stored in the Eclipse <code>.project</code> file, you can check it into your version control system and it will work in every one of your working copies, on every computer.</p>
+<p>Create a <code>Make Target</code> for each configuration that you want to build.  Here I assume that you have the usual Release and Debug configurations:</p>
+<ul>
+<li>Display the Make Target window using the <code>Window &gt; Show View &gt; Make Target</code> menu command. It should appear on the right, with the Outline window.</li>
+<li>Select the folder for the project for which you want to add CMake.  CMake will run with this folder as its working directory.</li>
+<li>Right click on the folder and select New from the context menu.  The Create Make Target dialog will appear.<ul>
+<li>Type <code>Target name CMake Release</code></li>
+<li>In Make target, deselect Same as the target name, and make sure that the Make target field is empty</li>
+<li>In Build Command, deselect Use builder settings and set the Build command to <code>cmake -E chdir Release/ cmake -G "Unix Makefiles" ../ -DCMAKE_BUILD_TYPE:STRING=Release</code></li>
+<li>Click OK</li>
+</ul>
+</li>
+<li>Repeat, this time for Target name CMake Debug, and Build command, <code>cmake -E chdir Debug/ cmake -G "Unix Makefiles" ../ -DCMAKE_BUILD_TYPE:STRING=Debug</code></li>
+<li>Create the Release/ and Debug/ directories <code>mkdir Release Debug</code></li>
+</ul>
+<h3 id="set-up-the-eclipse-cdt-builder">Set Up the Eclipse CDT Builder</h3>
+<p>Next, set up the CDT builder to run the Makefiles that CMake builds.</p>
+<ul>
+<li>
+<p>Right click on a CDT project.  In the context menu, select Properties.</p>
+<ul>
+<li>On the left, select C/C++ Build</li>
+<li>Set Configuration to Release</li>
+<li>Choose the Builder Settings tab</li>
+<li>Deselect Use default build command</li>
+<li>Specify the Build command: <code>make -C ${ConfigName}</code></li>
+</ul>
+</li>
+<li>
+<p>Deselect Generate Makefiles automatically</p>
+</li>
+<li>
+<p>Make the Build directory field blank</p>
+</li>
+<li>
+<p>Choose the Behavior tab</p>
+<ul>
+<li>Select Build (Incremental build) and specify the target name all</li>
+<li>Select Clean and specify the target name clean</li>
+</ul>
+</li>
+<li>
+<p>Set Configuration to Debug</p>
+<ul>
+<li>Choose the Builder Settings tab<ul>
+<li>Set all values exactly the same as the Release configuration</li>
+</ul>
+</li>
+<li>Choose the Behavior tab<ul>
+<li>Set all values exactly the same as the Release configuration</li>
+</ul>
+</li>
+<li>Click OK</li>
+</ul>
+</li>
+</ul>
+<h2 id="build-the-project">Build the Project</h2>
+<p>Use CMake to generate an out-of-source GNU Make build system:</p>
+<ul>
+<li>In the Make Targets window, double click on CMake Release or CMake Debug to generate the GNU Make build system in Release/ or Debug/, respectively</li>
+<li>If necessary, edit your CMakeLists.txt control files</li>
+<li>Delete the contents of the corresponding build directory. For example: <code>rm -r Release/*</code> and repeat.</li>
+</ul>
+<p>Actually, for minor edits to your <code>CMakeLists.txt</code> control files, you need not delete the build directory. However, I cannot tell you exactly what the threshold for <em>minor edits</em> is.</p>
+<p>Now, build the project the usual way with Eclipse:</p>
+<ul>
+<li>Select the configuration to build (Release of Debug) with the <code>Project &gt; Build Configurations &gt; Set Active</code> command</li>
+<li>Build with the <code>Project &gt; Build Project</code> command</li>
+<li>Edit your source code files, and repeat</li>
+</ul>
+<h3 id="source">Source</h3>
+<p>This information was directly taken from <a href="http://www.cmake.org/Wiki/Eclipse_CDT4_Generator">CMake.org</a> and <a href="http://www.voom.net/use-cmake-with-eclipse">Voom.net</a>. Thank you for sharing with open-source license! This page pretends to be as a connection point for the author of this wiki (I'm just trying to avoid googling about it everytime I need this info :) )</p>
+</section>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="https://jvgomez.github.io/">Archives</a>
+                <li><a href="https://jvgomez.github.io/tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="https://jvgomez.github.io/category/news.html">news</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="http://stackoverflow.com/users/2283531/javi-v"></a></li>
+                <li><a href="http://github.com/jvgomez"></a></li>
+                <li><a href="https://www.linkedin.com/profile/view?id=105141580"></a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="/index.html">JV - Science and stuff.</a> &copy; Javier V. Gómez 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/theme/bootstrap-collapse.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-21664985-2', 'auto');
+  ga('require', 'displayfeatures');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+
+</script>
+ 
+</body>
+</html>
