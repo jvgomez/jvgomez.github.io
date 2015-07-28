@@ -94,9 +94,11 @@
 <p>How would you tell a robot to go from one place to another? Or how to move its arms? What if it is an intelligent car?
 There are several different path planning problems and I have explored some of them.</p>
 <p>Most of my research is based in the <strong>Fast Marching Method</strong> and a custom, very useful version: <a href="/pages/fast-marching-method-and-fast-marching-square.html"><strong>Fast Marching Square (FM2)</strong></a>.</p>
-<p>I am also investigating <em>sampling-based</em> algorithms, focusing on the <strong>Fast Marching Trees (FMT*)</strong>. These algorithms are very fast but it is hard to ensure that they will provide an optimal solution. They work well in many dimensions, where other methods become really slow. In this case, my objective is twofold:
-- Try to make the algorithm as fast a possible.
-- Take into account kinematic (and dynamic) constrains.</p>
+<p>I am also investigating <em>sampling-based</em> algorithms, focusing on the <strong>Fast Marching Trees (FMT*)</strong>. These algorithms are very fast but it is hard to ensure that they will provide an optimal solution. They work well in many dimensions, where other methods become really slow. In this case, my objective is twofold:</p>
+<ul>
+<li>Try to make the algorithm as fast a possible.</li>
+<li>Take into account kinematic (and dynamic) constrains.</li>
+</ul>
 <p>The work in this area is done in close collaboration with <a href="http://web.stanford.edu/~pavone/">Marco Pavone's Autonomous Systems Lab</a> from <a href="http://stanford.edu/">Stanford University</a>.</p>
 <div class="figure align-left" style="width: 100%; height: auto;">
 <img alt="Fast Marching Trees example" src="/images/fmt.png" style="width: 100%; height: auto;"/>
